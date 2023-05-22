@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/api-producto")
 public class RestControllerProducto {
     @Autowired
     private ProductoServiceImpl productoService;
@@ -85,7 +85,7 @@ public class RestControllerProducto {
         Producto productoActual = productoService.findById(id);
         Producto productoActualizado;
 
-        Map<String,Object> response = new HashMap<>();// lugar donde ira lso mensajes de exito o error, tambien nuestra respuesta
+        Map<String,Object> response = new HashMap<>();// lugar donde ira los mensajes de exito o error, tambien nuestra respuesta
         if(result.hasErrors()){
 
             List<String> errors = result.getFieldErrors()//forma con streams para capturar errores

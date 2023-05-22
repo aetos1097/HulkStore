@@ -63,4 +63,5 @@ public class Producto {
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
+    private static final long serialVersionUID = 1L;
 }

@@ -1,14 +1,17 @@
 package com.unosystems.hulkstore.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name ="clientes")
+@Table(name = "clientes")
 public class Cliente {
 
     @Id
@@ -33,14 +36,17 @@ public class Cliente {
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createAt;
 
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Factura> facturas;
+
+
     @PrePersist
-    public void prePersisit(){
+    public void prePersist() {
         //metodo para registrar antes que se guarde a la base de datos
-        createAt = new Date();}
-
-    public Cliente() {
+        createAt = new Date();
     }
-
+    
     public Cliente(Long id, String cedula, String nombre, String apellido, String email, Date createAt) {
         this.id = id;
         this.cedula = cedula;
@@ -48,6 +54,9 @@ public class Cliente {
         this.apellido = apellido;
         this.email = email;
         this.createAt = createAt;
+    }
+    public Cliente() {
+        facturas = new ArrayList<Factura>();
     }
 
     public Long getId() {
@@ -98,6 +107,13 @@ public class Cliente {
         this.createAt = createAt;
     }
 
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
+    }
 
     private static final long serialVersionUID = 1L;
 }

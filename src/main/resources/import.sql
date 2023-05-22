@@ -23,3 +23,9 @@ INSERT INTO productos(nombre, create_at, precio) VALUES ('Gorra de DC Comics', '
 INSERT INTO productos(nombre, create_at, precio) VALUES ('Juguete de DC Comics', '2022-12-15', 12.99);
 INSERT INTO productos(nombre, create_at, precio) VALUES ('Camisa deportiva Marvel vs. DC', '2023-06-04', 34.99);
 INSERT INTO productos(nombre, create_at, precio) VALUES ('Juguete Marvel vs. DC', '2023-07-23', 17.99);
+
+
+INSERT INTO facturas (descripcion, observacion, cliente_id, create_at) VALUES('Factura numero 1', null, 1, NOW());
+INSERT INTO items (cantidad, factura_id, producto_id) VALUES(1, 1, 1);
+INSERT INTO items (cantidad, factura_id, producto_id) VALUES(2, 1, 4);
+INSERT INTO items (cantidad, factura_id, producto_id) VALUES(1, 1, 5);
