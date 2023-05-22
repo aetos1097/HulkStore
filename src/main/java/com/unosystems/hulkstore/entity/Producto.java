@@ -2,6 +2,8 @@ package com.unosystems.hulkstore.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 
@@ -13,6 +15,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String nombre;
 
 
@@ -20,6 +23,9 @@ public class Producto {
     @Temporal(TemporalType.DATE)
     @Column(name = "create_At")
     private Date createAt;
+
+    @NotNull
+    private Double precio;
 
     @PrePersist
     public void prePersist(){
@@ -41,7 +47,7 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    private Double precio;
+
     public Double getPrecio() {
         return precio;
     }
